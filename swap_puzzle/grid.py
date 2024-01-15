@@ -69,8 +69,13 @@ class Grid():
         cell1, cell2: tuple[int]
             The two cells to swap. They must be in the format (i, j) where i is the line and j the column number of the cell. 
         """
-        # TODO: implement this function (and remove the line "raise NotImplementedError").
-        raise NotImplementedError
+        a1, b1 = cell1[0], cell1[1]
+        a2, b2 = cell2[0], cell2[1]
+        if max(a1,a2) > self.m or max(b1,b2) > self.n:
+            raise "Swap is not allowed"
+        switch = self.state[a1][b1]
+        self.state[a1][b1] = self.state[a2][b2]
+        self.state[a2][b2] = switch
 
     def swap_seq(self, cell_pair_list):
         """
