@@ -57,8 +57,10 @@ class Grid():
         """
         Checks is the current state of the grid is sorte and returns the answer as a boolean.
         """
-        # TODO: implement this function (and remove the line "raise NotImplementedError").
-        raise NotImplementedError
+        n = self.n
+        m = self.m
+        initial_state = [list(range(i*n+1, (i+1)*n+1)) for i in range(m)]
+        return initial_state == self.state
 
     def swap(self, cell1, cell2):
         """
@@ -71,7 +73,7 @@ class Grid():
         """
         a1, b1 = cell1
         a2, b2 = cell2
-        if a1 > self.m or a2 > self.m or b1 > self.n or b2 > self.n:
+        if a1 > self.m or a2 > self.m or b1 > self.n or b2 > self.n or abs(a1 - a2) > 1 or abs(b1 - b2) > 1:
             raise "Swap is not allowed"
         switch = self.state[a1][b1]
         self.state[a1][b1] = self.state[a2][b2]
@@ -89,7 +91,7 @@ class Grid():
         """
         while not cell_pair_list == []:
             cell1, cell2 = cell_pair_list[0]
-            swap(self, cell1, cell2)
+            Grid.swap(self, cell1, cell2)
             cell_pair_list = cell_pair_list[1:]
 
 
